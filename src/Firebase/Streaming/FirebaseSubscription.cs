@@ -106,6 +106,9 @@ namespace Firebase.Database.Streaming
 
                             line = reader.ReadLine()?.Trim();
 
+                            if (((System.IO.StreamReader)reader).EndOfStream)
+                                throw new Exception("EndOfStream. Reconnecting..");
+
                             if (string.IsNullOrWhiteSpace(line))
                             {
                                 continue;
